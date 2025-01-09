@@ -1,7 +1,18 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Mover))]
 public class Enemy : MonoBehaviour
 {
-    public Mover Mover => GetComponent<Mover>();
+    private Mover _mover;
+
+    private void Awake()
+    {
+        _mover = GetComponent<Mover>();
+    }
+
+    public void GetDirection(Vector3 direction)
+    {
+        _mover.SetDirection(direction);
+    }
 }

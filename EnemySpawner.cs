@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
         
         Enemy enemy = Instantiate(_enemyPrefab, randomSpawnPoint.position, UnityEngine.Quaternion.LookRotation(randomDirection));
         
-        enemy.Mover.SetDirection(randomDirection);
+        enemy.GetDirection(randomDirection);
     }
 
     private IEnumerator SpawnEnemiesRoutine()
