@@ -1,11 +1,10 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private Enemy _enemyPrefab;
-    [SerializeField] private List<Transform> _spawnPoints;
+    [SerializeField] private Transform _goal;
     [SerializeField] private float _spawnInterval = 2f;
     
     private void Start()
@@ -15,15 +14,11 @@ public class EnemySpawner : MonoBehaviour
     
     private void SpawnEnemy()
     {
-        float randomAngle = Random.Range(0f, 360f);
+        Vector3 direction = (_goal.position - transform.position).normalized; ;
         
-        Vector3 randomDirection = Quaternion.Euler(0, randomAngle, 0) * Vector3.forward;
+        Enemy enemy = Instantiate(_enemyPrefab, transform.position, UnityEngine.Quaternion.LookRotation(direction));
         
-        Transform randomSpawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Count)];
-        
-        Enemy enemy = Instantiate(_enemyPrefab, randomSpawnPoint.position, UnityEngine.Quaternion.LookRotation(randomDirection));
-        
-        enemy.GetDirection(randomDirection);
+        enemy.GetDirection(direction);
     }
 
     private IEnumerator SpawnEnemiesRoutine()
