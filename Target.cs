@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Goal : MonoBehaviour
+public class Target : MonoBehaviour
 {
     [SerializeField] private Transform _pointA;
     [SerializeField] private Transform _pointB;

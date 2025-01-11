@@ -4,14 +4,25 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private Mover _mover;
+    private Target _target;
 
     private void Awake()
     {
         _mover = GetComponent<Mover>();
     }
 
-    public void GetDirection(Vector3 direction)
+    private void OnCollisionEnter(Collision collision)
     {
-        _mover.SetDirection(direction);
+        if (collision.gameObject == _target.gameObject)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void GetTarget(Target target)
+    {
+        _target = target;
+        
+        _mover.SetTarget(target);
     }
 }

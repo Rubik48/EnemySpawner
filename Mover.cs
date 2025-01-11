@@ -5,14 +5,29 @@ public class Mover : MonoBehaviour
     [SerializeField] private float _moveSpeed = 5f;
     
     private Vector3 _moveDirection;
+    private Target _target;
     
     private void Update()
     {
+        LookAtTarget(_target);
+        
+        MoveToTarget(_target);
+    }
+
+    private void LookAtTarget(Target target)
+    {
+        transform.LookAt(target.transform.position);
+    }
+
+    public void MoveToTarget(Target target)
+    {
+        _moveDirection = (target.transform.position - transform.position).normalized;
+        
         transform.position += _moveDirection * _moveSpeed * Time.deltaTime;
     }
     
-    public void SetDirection(Vector3 direction)
+    public void SetTarget(Target target)
     {
-        _moveDirection = direction.normalized;
+        _target = target;
     }
 }
