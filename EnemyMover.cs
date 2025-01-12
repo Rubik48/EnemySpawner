@@ -14,11 +14,6 @@ public class Mover : MonoBehaviour
         MoveToTarget(_target);
     }
 
-    private void LookAtTarget(Target target)
-    {
-        transform.LookAt(target.transform.position);
-    }
-
     public void MoveToTarget(Target target)
     {
         _moveDirection = (target.transform.position - transform.position).normalized;
@@ -29,5 +24,10 @@ public class Mover : MonoBehaviour
     public void SetTarget(Target target)
     {
         _target = target;
+    }
+    
+    private void LookAtTarget(Target target)
+    {
+        transform.LookAt(target.transform.position);
     }
 }

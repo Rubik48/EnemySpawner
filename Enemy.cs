@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void GetTarget(Target target)
+    public void SetTarget(Target target)
     {
         _target = target;
         

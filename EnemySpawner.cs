@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
     {
         Enemy enemy = Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
         
-        enemy.GetTarget(_target);
+        enemy.SetTarget(_target);
     }
 
     private IEnumerator SpawnEnemiesRoutine()
